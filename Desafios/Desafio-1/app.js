@@ -20,3 +20,4 @@ function sumNumbers() {
     let resultado = numero1 + numero2;
     alert(`${numero1} mais ${numero2} é igual a ${resultado}`); 
 }
+
