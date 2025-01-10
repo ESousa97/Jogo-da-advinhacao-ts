@@ -149,5 +149,5 @@ Este projeto está licenciado sob a **MIT License**. Você pode usá-lo livremen
 ---
 <br>
 
-**<a hrerf="https://explore-funcoes-e-listas.vercel.app/">Divirta-se jogando e codando!</a> ⚡**
+**<a href="https://explore-funcoes-e-listas.vercel.app/">Divirta-se jogando e codando!</a> ⚡**
 
