@@ -1207,7 +1207,6 @@ Para parcerias educacionais, consultoria técnica, workshops ou questões comerc
 
 * **GitHub:** [@ESousa97](https://github.com/ESousa97)
 * **LinkedIn:** [José Enoque Sousa](https://www.linkedin.com/in/enoque-sousa-bb89aa168/)
-* **Email Profissional:** [contato.esousa97@gmail.com](mailto:contato.esousa97@gmail.com)
 
 **Recursos de Suporte:**
 
