@@ -1,0 +1,37 @@
+{
+  "name": "js-game-typescript",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "🎯 Jogo do Número Secreto em TypeScript com Vite - Uma versão moderna e estilizada do clássico jogo de adivinhação",
+  "keywords": [
+    "typescript",
+    "vite",
+    "game",
+    "javascript",
+    "educational"
+  ],
+  "author": "Desenvolvedor TypeScript",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "lucide-react": "^0.526.0"
+  }
+}

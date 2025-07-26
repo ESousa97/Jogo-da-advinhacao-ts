@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="/src/style.css">
+    <title>Jogo do Número Secreto - TypeScript</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container__conteudo">
+        <div class="container__informacoes">
+          <div class="container__texto">
+            <h1></h1>
+            <p class="texto__paragrafo"></p>
+          </div>
+          
+          <div class="input-container">
+            <input 
+              type="number" 
+              min="1" 
+              max="10" 
+              class="container__input"
+              placeholder="Digite seu palpite..."
+              autocomplete="off"
+            >
+          </div>
+          
+          <div class="container__botoes">
+            <button id="chutar" class="container__botao container__botao--primary">
+              <i data-lucide="target"></i>
+              Chutar
+            </button>
+            <button id="reiniciar" class="container__botao container__botao--secondary" disabled>
+              <i data-lucide="refresh-cw"></i>
+              Novo Jogo
+            </button>
+          </div>
+          
+          <div class="game-stats">
+            <div class="stats-item">
+              <span class="stats-label">Tentativas:</span>
+              <span id="tentativas-count" class="stats-value">0</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="container__imagem">
+          <div class="ai-icon">
+            <i data-lucide="bot"></i>
+          </div>
+          <div class="ai-speech-bubble">
+            <span>Estou pensando em um número...</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="background-decoration">
+        <div class="floating-number">1</div>
+        <div class="floating-number">2</div>
+        <div class="floating-number">3</div>
+        <div class="floating-number">4</div>
+        <div class="floating-number">5</div>
+        <div class="floating-number">6</div>
+        <div class="floating-number">7</div>
+        <div class="floating-number">8</div>
+        <div class="floating-number">9</div>
+        <div class="floating-number">10</div>
+      </div>
+    </div>
+
+    <!-- Console de Desafios (Toggle) -->
+    <div class="challenges-console">
+      <button class="console-toggle" id="console-toggle">
+        <div class="toggle-content">
+          <span class="toggle-icon">
+            <i data-lucide="terminal"></i>
+          </span>
+          <span class="toggle-text">Console de Desafios</span>
+          <span class="toggle-arrow" id="toggle-arrow">
+            <i data-lucide="chevron-down"></i>
+          </span>
+        </div>
+      </button>
+      <div class="console-content" id="console-content">
+        <div class="console-header">
+          <h3>
+            <i data-lucide="rocket"></i>
+            Desafios JavaScript/TypeScript
+          </h3>
+          <p class="console-subtitle">Execute os desafios e veja a mágica acontecer!</p>
+        </div>
+        <div class="challenge-buttons">
+          <button onclick="runChallenge1()" class="challenge-btn challenge-btn-1">
+            <span class="btn-content">
+              <i data-lucide="target" class="btn-icon"></i>
+              <span class="btn-text">Desafio 1: Funções Básicas</span>
+            </span>
+          </button>
+          <button onclick="runChallenge2()" class="challenge-btn challenge-btn-2">
+            <span class="btn-content">
+              <i data-lucide="calculator" class="btn-icon"></i>
+              <span class="btn-text">Desafio 2: Matemática</span>
+            </span>
+          </button>
+          <button onclick="runChallenge3()" class="challenge-btn challenge-btn-3">
+            <span class="btn-content">
+              <i data-lucide="list" class="btn-icon"></i>
+              <span class="btn-text">Desafio 3: Arrays</span>
+            </span>
+          </button>
+          <button onclick="clearConsoleOutput()" class="challenge-btn clear-btn">
+            <span class="btn-content">
+              <i data-lucide="trash-2" class="btn-icon"></i>
+              <span class="btn-text">Limpar Console</span>
+            </span>
+          </button>
+        </div>
+        <div class="console-output" id="console-output">
+          <div class="welcome-message">
+            <p class="welcome-icon">
+              <i data-lucide="hand-wave"></i>
+            </p>
+            <p class="welcome-text">Bem-vindo ao Console Interativo!</p>
+            <p class="welcome-subtitle">Clique nos botões acima para executar os desafios e ver a magia do código em ação!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+    
+    <script>
+      // Inicializar Lucide Icons
+      document.addEventListener('DOMContentLoaded', function() {
+        lucide.createIcons();
+        
+        // Event listener para o botão toggle
+        const toggleBtn = document.getElementById('console-toggle');
+        toggleBtn.addEventListener('click', toggleConsole);
+      });
+      
+      // Estado do console
+      let isConsoleOpen = false;
+      
+      // Função melhorada para toggle do console
+      function toggleConsole() {
+        const content = document.getElementById('console-content');
+        const arrow = document.getElementById('toggle-arrow');
+        const toggle = document.getElementById('console-toggle');
+        
+        isConsoleOpen = !isConsoleOpen;
+        
+        if (isConsoleOpen) {
+          content.style.display = 'block';
+          content.style.opacity = '0';
+          content.style.transform = 'translateY(10px)';
+          
+          // Animação de entrada
+          setTimeout(() => {
+            content.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            content.style.opacity = '1';
+            content.style.transform = 'translateY(0)';
+          }, 10);
+          
+          arrow.style.transform = 'rotate(180deg)';
+          toggle.classList.add('active');
+        } else {
+          content.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+          content.style.opacity = '0';
+          content.style.transform = 'translateY(10px)';
+          
+          setTimeout(() => {
+            content.style.display = 'none';
+          }, 300);
+          
+          arrow.style.transform = 'rotate(0deg)';
+          toggle.classList.remove('active');
+        }
+      }
+      
+      function addToConsole(message) {
+        const output = document.getElementById('console-output');
+        const welcomeMessage = output.querySelector('.welcome-message');
+        
+        // Remove mensagem de boas-vindas na primeira execução
+        if (welcomeMessage) {
+          welcomeMessage.remove();
+        }
+        
+        const p = document.createElement('p');
+        p.innerHTML = message;
+        p.style.opacity = '0';
+        p.style.transform = 'translateY(10px)';
+        output.appendChild(p);
+        
+        // Animação de entrada para nova mensagem
+        setTimeout(() => {
+          p.style.transition = 'all 0.3s ease';
+          p.style.opacity = '1';
+          p.style.transform = 'translateY(0)';
+        }, 10);
+        
+        output.scrollTop = output.scrollHeight;
+      }
+      
+      function clearConsoleOutput() {
+        const output = document.getElementById('console-output');
+        output.innerHTML = `
+          <div class="welcome-message">
+            <p class="welcome-icon">
+              <i data-lucide="sparkles"></i>
+            </p>
+            <p class="welcome-text">Console Limpo!</p>
+            <p class="welcome-subtitle">Pronto para novos desafios!</p>
+          </div>
+        `;
+        // Re-inicializar ícones Lucide
+        lucide.createIcons();
+      }
+      
+      function runChallenge1() {
+        addToConsole('<strong class="challenge-header"><i data-lucide="target"></i> DESAFIO 1: FUNÇÕES BÁSICAS</strong>');
+        if (window.Desafios) {
+          window.Desafios.helloWorld();
+          addToConsole('<span class="success"><i data-lucide="check"></i> Executado: helloWorld()</span>');
+          
+          window.Desafios.cumprimentarPessoa('TypeScript');
+          addToConsole('<span class="success"><i data-lucide="check"></i> Executado: cumprimentarPessoa("TypeScript")</span>');
+          
+          addToConsole(`<span class="result"><i data-lucide="bar-chart"></i> Dobro de 7: <strong>${window.Desafios.dobrarNumero(7)}</strong></span>`);
+          addToConsole(`<span class="result"><i data-lucide="bar-chart"></i> Média de 4,6,8: <strong>${window.Desafios.calcularMedia(4, 6, 8).toFixed(2)}</strong></span>`);
+          addToConsole(`<span class="result"><i data-lucide="bar-chart"></i> Maior entre 15 e 23: <strong>${window.Desafios.encontrarMaior(15, 23)}</strong></span>`);
+          addToConsole(`<span class="result"><i data-lucide="bar-chart"></i> 6 ao quadrado: <strong>${window.Desafios.quadrado(6)}</strong></span>`);
+        }
+        addToConsole('<div class="separator"></div>');
+        // Re-inicializar ícones Lucide
+        lucide.createIcons();
+      }
+      
+      function runChallenge2() {
+        addToConsole('<strong class="challenge-header"><i data-lucide="calculator"></i> DESAFIO 2: OPERAÇÕES MATEMÁTICAS</strong>');
+        if (window.Desafios) {
+          addToConsole(`<span class="result"><i data-lucide="activity"></i> IMC (1.75m, 70kg): <strong>${window.Desafios.calcularIMC(1.75, 70).toFixed(2)}</strong></span>`);
+          addToConsole(`<span class="result"><i data-lucide="activity"></i> Fatorial de 6: <strong>${window.Desafios.calcularFatorial(6)}</strong></span>`);
+          addToConsole(`<span class="result"><i data-lucide="dollar-sign"></i> $150 em reais: <strong>R$ ${window.Desafios.converterDolarParaReal(150).toFixed(2)}</strong></span>`);
+          
+          const retangulo = window.Desafios.calcularAreaRetangulo(8, 5);
+          addToConsole(`<span class="result"><i data-lucide="square"></i> Retângulo 8x5 - Área: <strong>${retangulo.area}m²</strong>, Perímetro: <strong>${retangulo.perimetro}m</strong></span>`);
+          
+          const circulo = window.Desafios.calcularAreaCirculo(3);
+          addToConsole(`<span class="result"><i data-lucide="circle"></i> Círculo r=3 - Área: <strong>${circulo.area.toFixed(2)}m²</strong>, Perímetro: <strong>${circulo.perimetro.toFixed(2)}m</strong></span>`);
+          
+          const tabuada = window.Desafios.gerarTabuada(4);
+          addToConsole(`<span class="result"><i data-lucide="grid"></i> Tabuada do 4: <strong>${tabuada.slice(0,3).join(', ')}...</strong></span>`);
+        }
+        addToConsole('<div class="separator"></div>');
+        // Re-inicializar ícones Lucide
+        lucide.createIcons();
+      }
+      
+      function runChallenge3() {
+        addToConsole('<strong class="challenge-header"><i data-lucide="list"></i> DESAFIO 3: MANIPULAÇÃO DE ARRAYS</strong>');
+        if (window.Desafios) {
+          const linguagens = window.Desafios.criarListaLinguagens();
+          addToConsole(`<span class="result"><i data-lucide="layers"></i> Lista criada: <strong>[${linguagens.slice(0,4).join(', ')}...]</strong></span>`);
+          
+          const novaLista = window.Desafios.adicionarLinguagem(linguagens, 'Kotlin');
+          addToConsole(`<span class="result"><i data-lucide="plus"></i> Kotlin adicionado. Total: <strong>${novaLista.length} linguagens</strong></span>`);
+          
+          addToConsole(`<span class="result"><i data-lucide="arrow-right"></i> Primeira linguagem: <strong>${window.Desafios.obterPrimeiroElemento(linguagens)}</strong></span>`);
+          addToConsole(`<span class="result"><i data-lucide="arrow-left"></i> Última linguagem: <strong>${window.Desafios.obterUltimoElemento(linguagens)}</strong></span>`);
+        }
+        addToConsole('<div class="separator"></div>');
+        // Re-inicializar ícones Lucide
+        lucide.createIcons();
+      }
+    </script>
+  </body>
+</html>
