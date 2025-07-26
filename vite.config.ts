@@ -1,29 +1,12 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  root: '.',
   build: {
+    // onde seu bundle será gerado:
     outDir: 'dist',
-    sourcemap: true,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: false, // Manter console.log para os desafios
-        drop_debugger: true
-      }
-    }
-  },
-  server: {
-    port: 3000,
-    open: true,
-    host: true
-  },
-  resolve: {
-    alias: {
-      '@': '/src'
-    }
-  },
-  css: {
-    devSourcemap: true
+    // usar o esbuild em vez de terser, assim não precisa instalar nada extra
+    minify: 'esbuild',
+    // opcional: alvo de compatibilidade
+    target: 'esnext'
   }
 })
