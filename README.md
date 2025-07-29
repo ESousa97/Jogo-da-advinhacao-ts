@@ -1235,5 +1235,5 @@ Oferecemos suporte especializado para implementação em contextos educacionais,
 
 Agradecemos seu interesse no Jogo do Número Secreto e esperamos que este projeto inspire novas formas de ensinar e aprender programação de maneira divertida e acessível.
 
-> 🎯 **Criado em:** 7 de dez. de 2024 às 00:27 - Reimaginando a educação em programação através de gamificação inteligente e tecnologias web de ponta
+> ✨ **Criado em:** 7 de dez. de 2024 às 00:27 - Reimaginando a educação em programação através de gamificação inteligente e tecnologias web de ponta
 
