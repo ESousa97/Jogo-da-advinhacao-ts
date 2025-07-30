@@ -31,7 +31,6 @@ O projeto **Jogo do Número Secreto** representa uma reimaginação moderna e te
 
 1. [Introdução e Motivação](#introdução-e-motivação)
 2. [🔗 Link Principal / Acesso ao Projeto](#-link-principal--acesso-ao-projeto)
-3. [🎬 Demonstração Visual](#-demonstração-visual)
 4. [Arquitetura do Sistema](#arquitetura-do-sistema)
 5. [Decisões de Design Chave](#decisões-de-design-chave)
 6. [✨ Funcionalidades Detalhadas (com Casos de Uso)](#-funcionalidades-detalhadas-com-casos-de-uso)
@@ -64,14 +63,6 @@ A motivação central para o desenvolvimento do projeto é democratizar o acesso
 [**JOGAR AGORA - https://jogo-da-advinhacao-ts-t74u.vercel.app/**](https://jogo-da-advinhacao-ts-t74u.vercel.app/)
 
 Teste suas habilidades de dedução, explore o console de desafios JavaScript/TypeScript e experimente uma interface moderna com síntese de voz e animações fluidas.
-
-## 🎬 Demonstração Visual
-
-<p align="center">
-  <img src="./assets/jogo-do-numero-secreto-ts.gif" alt="Demonstração do Jogo do Número Secreto" width="800">
-</p>
-
-*Demonstração interativa mostrando gameplay, console de desafios e responsividade da interface*
 
 ## Arquitetura do Sistema
 
