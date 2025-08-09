@@ -62,6 +62,12 @@ A motivação central para o desenvolvimento do projeto é democratizar o acesso
 
 [**JOGAR AGORA - https://jogo-da-advinhacao-ts-t74u.vercel.app/**](https://jogo-da-advinhacao-ts-t74u.vercel.app/)
 
+<div align="center">
+
+![imagem](./assets/jogo-do-numero-secreto-ts.gif)
+  
+</div>
+
 Teste suas habilidades de dedução, explore o console de desafios JavaScript/TypeScript e experimente uma interface moderna com síntese de voz e animações fluidas.
 
 ## Arquitetura do Sistema
